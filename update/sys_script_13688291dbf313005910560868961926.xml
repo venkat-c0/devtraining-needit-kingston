@@ -6,7 +6,7 @@
         <action_delete>false</action_delete>
         <action_insert>true</action_insert>
         <action_query>false</action_query>
-        <action_update>false</action_update>
+        <action_update>true</action_update>
         <active>true</active>
         <add_message>false</add_message>
         <advanced>true</advanced>
@@ -36,29 +36,42 @@
 	// Create a GlideDateTime object for the when needed date
 	var whenNeeded = new GlideDateTime(current.u_when_needed);
 	
-	var today = rightnow.getLocalDate();
-	var istoday = whenNeeded.getLocalDate();
-	if(today.compareTo(istoday) == 0){
-		gs.addErrorMessage("You can not submit NeedIt requests for today ");
-		current.setAbortAction(true);
-	}
-	
-	// if the when needed date is before rightnow, do not write the record to the database
-	// output an error message to the screen
-	else if(whenNeeded.before(rightnow)){
-		gs.addErrorMessage("When needed date cannot be in the past. your request has not been saved to the database.");
-		current.setAbortAction(true);
-	}	
-	
-	
-})(current, previous);]]></script>
+	// 	var today = rightnow.getLocalDate();
+	// 	var istoday = whenNeeded.getLocalDate();
+	// 	if(today.compareTo(istoday) == 0){
+		// 		gs.addErrorMessage("You can not submit NeedIt requests for today ");
+		// 		current.setAbortAction(true);
+		//	}
+		
+		// if the when needed date is before rightnow, do not write the record to the database
+		// output an error message to the screen
+		// 	else if(whenNeeded.before(rightnow)){
+			// 		gs.addErrorMessage("When needed date cannot be in the past. your request has not been saved to the database.");
+			// 		current.setAbortAction(true);
+			// 	}
+			
+			var niUtils = new NeedItUtils();
+			var isPast = niUtils.isDatePast(whenNeeded);
+			if (isPast == true){
+				gs.addErrorMessage("When needed date cannot be in the past.  Your request has not been saved to the database.");
+				current.setAbortAction(true);
+			}
+			
+			var is2day = niUtils.isToday(whenNeeded);
+			if(is2day == true){
+				gs.addErrorMessage("You can not submit NeedIt requests for today ");
+				current.setAbortAction(true);
+			}
+			
+			
+		})(current, previous);]]></script>
         <sys_class_name>sys_script</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2018-08-07 15:30:13</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>13688291dbf313005910560868961926</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>NeedIt When needed field date</sys_name>
         <sys_overrides/>
         <sys_package display_value="NeedIt" source="x_58872_needit">6ead8e780f603200cd674f8ce1050ed1</sys_package>
@@ -66,7 +79,7 @@
         <sys_scope display_value="NeedIt">6ead8e780f603200cd674f8ce1050ed1</sys_scope>
         <sys_update_name>sys_script_13688291dbf313005910560868961926</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-08-07 17:15:30</sys_updated_on>
+        <sys_updated_on>2018-08-08 19:39:46</sys_updated_on>
         <template/>
         <when>before</when>
     </sys_script>
