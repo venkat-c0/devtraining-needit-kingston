@@ -21,19 +21,20 @@ NeedItTaskRecords.addQuery('state','!=',3);
 NeedItTaskRecords.query();
 while(NeedItTaskRecords.next()){
   gs.info("NeedIt record due date soon = " + NeedItTaskRecords.number);
+	gs.eventQueue('x_58872_needit.NeedIt Task records with ',NeedItTaskRecords,NeedItTaskRecords.number,gs.getUserDisplayName());
 }]]></script>
         <sys_class_name>sysauto_script</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2018-09-22 08:45:59</sys_created_on>
         <sys_id>26152dc8dbb02300f09aab7dca96192d</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>NeedIt Task records with Due dates between now and 24 hours from now</sys_name>
         <sys_package display_value="NeedIt" source="x_58872_needit">6ead8e780f603200cd674f8ce1050ed1</sys_package>
         <sys_policy/>
         <sys_scope display_value="NeedIt">6ead8e780f603200cd674f8ce1050ed1</sys_scope>
         <sys_update_name>sysauto_script_26152dc8dbb02300f09aab7dca96192d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-09-22 08:50:40</sys_updated_on>
+        <sys_updated_on>2018-09-22 13:24:11</sys_updated_on>
         <upgrade_safe>false</upgrade_safe>
     </sysauto_script>
 </record_update>
